@@ -163,7 +163,7 @@ declare @Precio_compra decimal(10)
 select @Precio_compra = Precio_compra from inserted
 declare @id INT
 select @id = Producto_id from inserted
-declare @Proveedor_id int
+declare @Proveedor_id int 
 select @Proveedor_id = Proveedor_id from inserted
 update Precio set Fecha_final= DATEADD(ms,-3,dateadd(dd,DATEDIFF(dd,0,GETDATE()),0))
 WHERE Producto_id=@id and Fecha_final IS NULL
@@ -217,7 +217,7 @@ GO
 --Inserts tablas pruebas
 insert into Producto Values('Cerveza Edwin2',1500)
 insert into Proveedor values('a','b','c','d','3')
-insert into Proveedor_Producto VALUES(2,2,900)
+insert into Proveedor_Producto VALUES(2,2,3000)
 
 
 
