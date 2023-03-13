@@ -7,41 +7,12 @@
 # Feel free to rename the models, but don't rename db_table values or field names.
 from django.db import models
 
-
-class Empleado(models.Model):
-    nombres = models.CharField(max_length=30, db_collation='SQL_Latin1_General_CP1_CI_AS', blank=True, null=True)
-    apellidos = models.CharField(max_length=30, db_collation='SQL_Latin1_General_CP1_CI_AS', blank=True, null=True)
-    correo = models.CharField(max_length=30, db_collation='SQL_Latin1_General_CP1_CI_AS', blank=True, null=True)
-    direccion = models.CharField(max_length=30, db_collation='SQL_Latin1_General_CP1_CI_AS', blank=True, null=True)
-    telefono = models.IntegerField(blank=True, null=True)
-    estado = models.IntegerField(blank=True, null=True)
-    tipo_empleado = models.ForeignKey('TipoEmpleado', models.DO_NOTHING)
-    sede = models.ForeignKey('Sede', models.DO_NOTHING)
-
-    class Meta:
-        managed = False
-        db_table = 'Empleado'
-
-
 class Mesa(models.Model):
     numero = models.SmallIntegerField(blank=True, null=True)
 
     class Meta:
         managed = False
         db_table = 'Mesa'
-
-
-class Precio(models.Model):
-    producto = models.ForeignKey('Producto', models.DO_NOTHING, db_column='Producto_id', blank=True, null=True)  # Field name made lowercase.
-    proveedor_id = models.IntegerField(db_column='Proveedor_id', blank=True, null=True)  # Field name made lowercase.
-    precio_venta = models.DecimalField(db_column='Precio_venta', max_digits=15, decimal_places=0, blank=True, null=True)  # Field name made lowercase.
-    precio_compra = models.DecimalField(db_column='Precio_compra', max_digits=15, decimal_places=0, blank=True, null=True)  # Field name made lowercase.
-    fecha_inicio = models.DateTimeField(db_column='Fecha_inicio', blank=True, null=True)  # Field name made lowercase.
-    fecha_final = models.DateTimeField(db_column='Fecha_final', blank=True, null=True)  # Field name made lowercase.
-
-    class Meta:
-        managed = False
-        db_table = 'Precio'
 
 
 class Producto(models.Model):
@@ -53,9 +24,32 @@ class Producto(models.Model):
         db_table = 'Producto'
 
 
+class Precio(models.Model):
+    producto = models.ForeignKey(Producto, models.DO_NOTHING, db_column='Producto_id', blank=True, null=True)  # Field name made lowercase.
+    proveedor_id = models.IntegerField(db_column='Proveedor_id', blank=True, null=True)  # Field name made lowercase.
+    precio_venta = models.DecimalField(db_column='Precio_venta', max_digits=15, decimal_places=0, blank=True, null=True)  # Field name made lowercase.
+    precio_compra = models.DecimalField(db_column='Precio_compra', max_digits=15, decimal_places=0, blank=True, null=True)  # Field name made lowercase.
+    fecha_inicio = models.DateTimeField(db_column='Fecha_inicio', blank=True, null=True)  # Field name made lowercase.
+    fecha_final = models.DateTimeField(db_column='Fecha_final', blank=True, null=True)  # Field name made lowercase.
+
+    class Meta:
+        managed = False
+        db_table = 'Precio'
+
+
+class Sede(models.Model):
+    nombre = models.CharField(max_length=30, db_collation='SQL_Latin1_General_CP1_CI_AS', blank=True, null=True)
+    direccion = models.CharField(max_length=30, db_collation='SQL_Latin1_General_CP1_CI_AS', blank=True, null=True)
+    telefono = models.IntegerField(blank=True, null=True)
+
+    class Meta:
+        managed = False
+        db_table = 'Sede'
+
+
 class ProdutoSede(models.Model):
     producto = models.ForeignKey(Producto, models.DO_NOTHING, db_column='Producto_id', blank=True, null=True)  # Field name made lowercase.
-    sede = models.ForeignKey('Sede', models.DO_NOTHING, db_column='Sede_id', blank=True, null=True)  # Field name made lowercase.
+    sede = models.ForeignKey(Sede, models.DO_NOTHING, db_column='Sede_id', blank=True, null=True)  # Field name made lowercase.
     cantidad = models.IntegerField(db_column='Cantidad', blank=True, null=True)  # Field name made lowercase.
 
     class Meta:
@@ -83,16 +77,6 @@ class ProveedorProducto(models.Model):
     class Meta:
         managed = False
         db_table = 'Proveedor_Producto'
-
-
-class Sede(models.Model):
-    nombre = models.CharField(max_length=30, db_collation='SQL_Latin1_General_CP1_CI_AS', blank=True, null=True)
-    direccion = models.CharField(max_length=30, db_collation='SQL_Latin1_General_CP1_CI_AS', blank=True, null=True)
-    telefono = models.IntegerField(blank=True, null=True)
-
-    class Meta:
-        managed = False
-        db_table = 'Sede'
 
 
 class TipoEmpleado(models.Model):
@@ -123,6 +107,20 @@ class VentaProducto(models.Model):
         managed = False
         db_table = 'Venta_Producto'
 
+
+class Empleado(models.Model):
+    nombres = models.CharField(max_length=30, db_collation='SQL_Latin1_General_CP1_CI_AS', blank=True, null=True)
+    apellidos = models.CharField(max_length=30, db_collation='SQL_Latin1_General_CP1_CI_AS', blank=True, null=True)
+    correo = models.CharField(max_length=30, db_collation='SQL_Latin1_General_CP1_CI_AS', blank=True, null=True)
+    direccion = models.CharField(max_length=30, db_collation='SQL_Latin1_General_CP1_CI_AS', blank=True, null=True)
+    telefono = models.IntegerField(blank=True, null=True)
+    estado = models.IntegerField(blank=True, null=True)
+    tipo_empleado = models.ForeignKey(TipoEmpleado, models.DO_NOTHING)
+    sede = models.ForeignKey(Sede, models.DO_NOTHING)
+
+    class Meta:
+        managed = False
+        db_table = 'Empleado'
 
 class AuthGroup(models.Model):
     name = models.CharField(unique=True, max_length=150, db_collation='SQL_Latin1_General_CP1_CI_AS')
