@@ -7,7 +7,7 @@ ALLOWED_HOSTS = []
 DATABASES = {
     'default': {
         'ENGINE': 'mssql',
-        'NAME': 'Bar',
+        'NAME': 'Bar2',
         'USER': 'sa',
         'PASSWORD': 'Docker@123',
         'HOST': 'localhost',
