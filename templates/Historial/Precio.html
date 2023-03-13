@@ -1,2 +1,46 @@
 <h1>Precio</h1>
-{{precio}}
+<table>
+    <tr>
+        <td>
+            Producto
+        </td>
+        <td>
+            Proveedor
+        </td>
+        <td>
+            Precio Venta
+        </td>
+        <td>
+            Precio Compra
+        </td>
+        <td>
+            Fecha inicio
+        </td>
+        <td>
+            Fecha final
+        </td>
+    </tr>
+    {% for p in precio%}
+        <tr>
+            <td>
+                {{p.producto_id}}
+            </td>
+            <td>
+                {{p.proveedor_id}}
+            </td>
+            <td>
+                {{p.precio_venta}}
+            </td>
+            <td>
+                {{p.precio_compra}}
+            </td>
+            <td>
+                {{p.fecha_inicio}}
+            </td>
+            <td>
+                {{p.fecha_final}}
+            </td>
+        </tr>
+    {% endfor %}
+
+</table>
