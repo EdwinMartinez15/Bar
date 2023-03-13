@@ -1,0 +1,23 @@
+<h1>Historial</h1>
+<table>
+    <tr>
+        <td>
+            Nombres
+        </td>
+        <td>
+            Valor
+        </td>
+    </tr>
+    {% for h in historial%}
+        <tr>
+            <td>
+                {{h.nombre}}
+            </td>
+            <td>
+                {{h.valor}}
+            </td>
+        </tr>
+    {% endfor %}
+
+</table>
+    
