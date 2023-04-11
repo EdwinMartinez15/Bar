@@ -4,7 +4,8 @@ from .models import Producto
 from .models import Precio
 # Create your views here.
 
-
+from rest_framework.generics import ListAPIView
+from .serializars import PrecioSerializar
 
 class ProductoListView(ListView):
     model = Producto
@@ -16,3 +17,10 @@ class PrecioListView(ListView):
     model = Precio
     template_name = "Historial/Precio.html"
     context_object_name='precio'
+
+class PrecioListAPIView(ListAPIView):
+
+    serializer_class= PrecioSerializar
+
+    def get_queryset(self):
+        return Precio.objects.all()
