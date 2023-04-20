@@ -8,5 +8,17 @@ urlpatterns = [
         'api/precio/list/', 
         views.PrecioListAPIView.as_view()
     ),
+    path(
+        'api/precio/listaUsuarios/', 
+        views.UsuarioListAPIView.as_view()
+    ),
+    path(
+        'api/precio/listaProductos/', 
+        views.ProductoListAPIView.as_view()
+    ),
+    path(
+        'api/precio/listaProductosSede/', 
+        views.ProductoSedeListAPIView.as_view()
+    ),
 
 ]

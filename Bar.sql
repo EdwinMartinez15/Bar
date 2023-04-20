@@ -259,3 +259,7 @@ SELECT TOP (1000) [id]
     ,[nombre]
     ,[valor]
 FROM [Bar2].[dbo].[Producto]
+
+insert into Empleado values('daniel','urbina','da@hotmail.com','carr',3058102491,1,1,1)
+insert into Tipo_Empleado values('administrador')
+insert into Sede values('Caracas','carrera',4333333)
