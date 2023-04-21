@@ -9,9 +9,9 @@ DATABASES = {
         'ENGINE': 'mssql',
         'NAME': 'Bar2',
         'USER': 'sa',
-        'PASSWORD': 'Docker@123',
+        'PASSWORD': 'Edwin1',
         'HOST': 'localhost',
-        'PORT':'',
+        'PORT':'1433',
         'OPTIONS': {
             'driver': 'ODBC Driver 17 for SQL Server',},
     },
